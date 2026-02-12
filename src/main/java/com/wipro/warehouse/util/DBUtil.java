@@ -9,10 +9,9 @@ public class DBUtil {
         Connection con = null;
 
         try {
-            // Load Oracle Driver
+            
             Class.forName("oracle.jdbc.driver.OracleDriver");
 
-            // Create Connection
             con = DriverManager.getConnection(
                     "jdbc:oracle:thin:@localhost:1521:xe",
                     "SYSTEM",

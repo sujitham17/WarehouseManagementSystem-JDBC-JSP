@@ -45,14 +45,11 @@ public class WarehouseDAO {
         try {
             Connection con = DBUtil.getDBConnection();
 
-            // Convert date to YYYYMMDD
             java.text.DateFormat format = new java.text.SimpleDateFormat("yyyyMMdd");
             String datePart = format.format(receivedDate);
 
-            // First two uppercase letters of item name
             String itemPart = itemName.substring(0, 2).toUpperCase();
 
-            // Get sequence value
             String seqQuery = "SELECT WAREHOUSE_SEQ.NEXTVAL FROM DUAL";
             PreparedStatement ps = con.prepareStatement(seqQuery);
             ResultSet rs = ps.executeQuery();
@@ -63,7 +60,6 @@ public class WarehouseDAO {
                 seqNumber = rs.getInt(1);
             }
 
-            // Make sure sequence is 2 digit
             String seqPart = String.format("%02d", seqNumber);
 
             recordId = datePart + itemPart + seqPart;

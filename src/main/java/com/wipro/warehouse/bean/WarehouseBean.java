@@ -12,8 +12,6 @@ public class WarehouseBean {
     private String status;
     private String remarks;
 
-    // Getters and Setters
-
     public String getRecordId() {
         return recordId;
     }

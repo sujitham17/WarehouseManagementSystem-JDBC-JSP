@@ -15,7 +15,6 @@ public class Administrator {
 
         try {
 
-            // 1. Null Validation
             if (warehouseBean == null ||
                 warehouseBean.getItemName() == null ||
                 warehouseBean.getReceivedDate() == null) {
@@ -23,12 +22,10 @@ public class Administrator {
                 throw new InvalidInputException();
             }
 
-            // 2. Item Name Length Check
             if (warehouseBean.getItemName().length() < 2) {
                 return "INVALID ITEM NAME";
             }
 
-            // 3. Check if Record Already Exists
             if (dao.recordExists(
                     warehouseBean.getItemName(),
                     warehouseBean.getReceivedDate())) {
@@ -36,14 +33,12 @@ public class Administrator {
                 return "ALREADY EXISTS";
             }
 
-            // 4. Generate Record ID
             String recordId = dao.generateRecordID(
                     warehouseBean.getItemName(),
                     warehouseBean.getReceivedDate());
 
             warehouseBean.setRecordId(recordId);
 
-            // 5. Insert into DB
             return dao.createRecord(warehouseBean);
 
         } catch (InvalidInputException e) {
